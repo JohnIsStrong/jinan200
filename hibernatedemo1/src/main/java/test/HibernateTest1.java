@@ -51,6 +51,8 @@ public class HibernateTest1 {
 		Assert.assertTrue(u.getUname()!=null);
 	}
 	
+	
+	
 	@Test // junit,测试框架
 	public void testUpdate(){
 		Transaction tx=sen.beginTransaction();

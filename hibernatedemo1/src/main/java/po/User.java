@@ -1,9 +1,13 @@
 package po;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -25,6 +29,21 @@ public class User {
 	private String uname;
 	private int age;
 	
+	
+	@OneToMany(mappedBy="u")
+	private Set<Addr> addrs=new HashSet<Addr>();
+	
+	
+	
+	
+	public Set<Addr> getAddrs() {
+		return addrs;
+	}
+
+
+	public void setAddrs(Set<Addr> addrs) {
+		this.addrs = addrs;
+	}
 	@Transient
 	private boolean sex;
 	
@@ -45,7 +64,7 @@ public class User {
 	public Integer getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	private void setId(Integer id) {
 		this.id = id;
 	}
 	public String getUname() {

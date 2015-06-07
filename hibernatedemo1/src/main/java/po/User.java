@@ -1,6 +1,14 @@
 package po;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+//jdk5+ ,注解 annotation
+//注释 note
+@Entity
+@Table(name="user")
 public class User {
+	@Id
 	private Integer id;
 	private String uname;
 	private int age;

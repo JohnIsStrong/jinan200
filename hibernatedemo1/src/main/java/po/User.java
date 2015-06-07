@@ -8,14 +8,15 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 //JPA javaEE规范之一
 //WebService,JNDI,JMS,JTA JavaMail
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
 	@Id
-	@GenericGenerator(name="myGen",strategy="native")
+	@GenericGenerator(name="myGen",strategy="sequence",parameters = {@Parameter(name = "sequence", value = "seq_users") })
 	@GeneratedValue(generator="myGen")
 	
 	private Integer id;

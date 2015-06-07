@@ -38,9 +38,10 @@ public class HibernateTest1 {
 	@Test // junit,测试框架
 	public void testSave(){
 		User u = new User("john",99,true);
-		Transaction tx=sen.beginTransaction();
-		sen.save(u);
-		tx.commit();
+		//Transaction tx=sen.beginTransaction();
+		sen.persist(u);
+		
+		sen.beginTransaction().commit();
 		System.out.println(u.getId());
 		Assert.assertTrue(u.getId()!=null);
 	}

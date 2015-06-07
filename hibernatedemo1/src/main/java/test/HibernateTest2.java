@@ -61,8 +61,10 @@ public class HibernateTest2 {
 	}
 	@Test // junit,测试框架
 	public void testLoad(){
-		User u=(User)sen.get(User.class, 1);
+		User u=(User)sen.get(User.class, 40);
 		System.out.println(u.getUname());
+		
+		//System.out.println(u.getAddrs().size());
 		Assert.assertTrue(u.getUname()!=null);
 	}
 	
@@ -71,9 +73,12 @@ public class HibernateTest2 {
 	@Test // junit,测试框架
 	public void testUpdate(){
 		Transaction tx=sen.beginTransaction();
-		User u=(User)sen.get(User.class, 22);
-		u.setUname("tom1");
-		//sen.evict(u);
+		User u=(User)sen.get(User.class, 40);
+		Addr a = new Addr();
+		a.setAddrName("jinan");
+		u.getAddrs().add(a);
+		a.setU(u);
+//		sen.save(a);
 		tx.commit();
 	}
 	

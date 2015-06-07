@@ -9,3 +9,4 @@ create table addrs (id number(5) primary key,addr_name varchar2(10),u_id number(
 
 
 select * from addrs;
+select * from users;

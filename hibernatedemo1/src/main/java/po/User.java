@@ -3,6 +3,7 @@ package po;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,7 +32,7 @@ public class User {
 	private int age;
 	
 	
-	@OneToMany(mappedBy="u",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="u",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	private Set<Addr> addrs=new HashSet<Addr>();
 	
 	

@@ -59,13 +59,35 @@ public class HibernateTest2 {
 		System.out.println(u.getId());
 		Assert.assertTrue(u.getId()!=null);
 	}
+	
+	@Test // junit,测试框架
+	public void testSave1(){
+		User u = new User("johnson",99,true);
+		Addr a1=new Addr();
+		a1.setAddrName("bj");
+		Addr a2=new Addr();
+		a2.setAddrName("sh");
+		a1.setU(u);
+		a2.setU(u);
+		u.getAddrs().add(a1);
+		u.getAddrs().add(a2);
+		
+		Transaction tx=sen.beginTransaction();
+		
+		sen.save(u);
+		tx.commit();
+		System.out.println(u.getId());
+		Assert.assertTrue(u.getId()!=null);
+	}
+	
+	
 	@Test // junit,测试框架
 	public void testLoad(){
-		User u=(User)sen.get(User.class, 40);
+		User u=(User)sen.load(User.class, 40);
 		System.out.println(u.getUname());
-		
-		//System.out.println(u.getAddrs().size());
-		Assert.assertTrue(u.getUname()!=null);
+//		
+//		//System.out.println(u.getAddrs().size());
+//		Assert.assertTrue(u.getUname()!=null);
 	}
 	
 	
@@ -73,11 +95,17 @@ public class HibernateTest2 {
 	@Test // junit,测试框架
 	public void testUpdate(){
 		Transaction tx=sen.beginTransaction();
-		User u=(User)sen.get(User.class, 40);
-		Addr a = new Addr();
-		a.setAddrName("jinan");
-		u.getAddrs().add(a);
-		a.setU(u);
+		User u=(User)sen.load(User.class, 40);
+		
+		for(Addr a:u.getAddrs()){
+			sen.delete(a);
+			
+		}
+		u.getAddrs().clear();
+//		Addr a = new Addr();
+//		a.setAddrName("sd");
+//		u.getAddrs().add(a);
+//		a.setU(u);
 //		sen.save(a);
 		tx.commit();
 	}
@@ -85,7 +113,7 @@ public class HibernateTest2 {
 	@Test // junit,测试框架
 	public void testDelete(){
 		Transaction tx=sen.beginTransaction();
-		User u=(User)sen.get(User.class, 2);
+		User u=(User)sen.get(User.class, 43);
 		sen.delete(u);
 		tx.commit();
 	}

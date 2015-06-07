@@ -11,7 +11,7 @@ public class HibernateTest1 {
 
 	public static void main(String[] args) {
 		User u = new User("john",100,true);
-		u.setId(1);
+		
 		
 		SessionFactory sf=new Configuration().configure().buildSessionFactory();
 		Session sen=sf.openSession();

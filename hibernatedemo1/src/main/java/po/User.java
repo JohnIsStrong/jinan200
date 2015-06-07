@@ -1,17 +1,30 @@
 package po;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-//jdk5+ ,注解 annotation
-//注释 note
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
+//JPA javaEE规范之一
+//WebService,JNDI,JMS,JTA JavaMail
+
 @Entity
 @Table(name="user")
 public class User {
 	@Id
+	@GenericGenerator(name="myGen",strategy="native")
+	@GeneratedValue(generator="myGen")
+	
 	private Integer id;
+	
+	@Column(name="u_name")
 	private String uname;
 	private int age;
+	
+	@Transient
 	private boolean sex;
 	
 	public User() {

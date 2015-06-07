@@ -9,7 +9,11 @@
 		<property name="connection.password">123</property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-		<mapping class="po.User"/>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+
+		<mapping class="po.User" />
+
 	</session-factory>
 
 </hibernate-configuration>

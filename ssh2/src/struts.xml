@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor name="sec" class="interceptor.SecInterceptor"></interceptor>
+		</interceptors>
+		
+		<global-results>
+			<result name="input">login.jsp</result>
+		</global-results>
+		<action name="login" class="umBean" method="login">
+			<result name="success" type="chain">listAllUsers</result>
+		</action>
+		<action name="regist" class="umBean" method="regist">
+			<result name="success">login.jsp</result>
+		</action>
+		<action name="listAllUsers" class="umBean" method="listAllUsers">
+			<interceptor-ref name="sec"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>allUsers.jsp</result>
+			
+		</action>
+		
+	</package>
+</struts>

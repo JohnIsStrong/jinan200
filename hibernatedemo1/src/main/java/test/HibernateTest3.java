@@ -99,7 +99,7 @@ public class HibernateTest3 {
 	
 	@Test // junit,测试框架
 	public void testByPaging(){
-		int offset=0;
+		int offset=5;
 		int max=4;
 		String hql="from User Order by uname asc,id desc";
 		
